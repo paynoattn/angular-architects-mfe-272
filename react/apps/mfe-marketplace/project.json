@@ -1,0 +1,98 @@
+{
+  "root": "apps/mfe-marketplace",
+  "sourceRoot": "apps/mfe-marketplace/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/mfe-marketplace",
+        "index": "apps/mfe-marketplace/src/index.html",
+        "baseHref": "/",
+        "main": "apps/mfe-marketplace/src/main.ts",
+        "polyfills": "apps/mfe-marketplace/src/polyfills.ts",
+        "tsConfig": "apps/mfe-marketplace/tsconfig.app.json",
+        "assets": ["apps/mfe-marketplace/src/favicon.ico", "apps/mfe-marketplace/src/assets"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/mfe-marketplace/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/mfe-marketplace/src/environments/environment.ts",
+              "with": "apps/mfe-marketplace/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/mfe-marketplace/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "marketplace:build",
+        "hmr": true,
+        "port": 3001
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "marketplace:build:development"
+        },
+        "production": {
+          "buildTarget": "marketplace:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mfe-marketplace/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/mfe-marketplace"],
+      "options": {
+        "jestConfig": "apps/mfe-marketplace/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mfe-marketplace:build",
+        "port": 9222
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "marketplace:build:development"
+        },
+        "production": {
+          "buildTarget": "marketplace:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

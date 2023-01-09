@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "projects": {
+    "api-connectors-bff": "apps/api-connectors-bff",
+    "api-marketplace-bff": "apps/api-marketplace-bff",
+    "hooks": "libs/hooks",
+    "mfe-connectors": "apps/mfe-connectors",
+    "marketplace": "apps/mfe-marketplace",
+    "testing": "libs/testing",
+    "types": "libs/types",
+    "web-mp-theme": "libs/web-mp-theme"
+  }
+}

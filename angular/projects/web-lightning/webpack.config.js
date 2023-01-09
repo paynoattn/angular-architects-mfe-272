@@ -6,7 +6,7 @@ const {
 module.exports = withModuleFederationPlugin({
     remotes: {
         // Check this line. Is port 4201 configured?
-        // marketplace: '/mfe-marketplace/remoteEntry.js',
+        // mfe-marketplace: '/mfe-mfe-marketplace/remoteEntry.js',
     },
 
     shared: {

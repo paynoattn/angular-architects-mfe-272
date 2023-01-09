@@ -1,72 +1,10 @@
 {
-  "/api": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/requestHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/navHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/dispatchHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/workOrderHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/inspectionHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/dataStoreHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
-  "/sessionHub": {
-    "target": "http://backend:5001",
-    "secure": false,
-    "ws": true
-  },
   "/mfe-marketplace": {
-    "target": "http://172.18.0.6:3001",
+    "target": "http://localhost:3001",
     "secure": false,
     "ws": true,
     "pathRewrite": {
       "^/mfe-marketplace": ""
-    }
-  },
-  "/bff-marketplace": {
-    "target": "http://api-marketplace-bff:4000",
-    "secure": false,
-    "ws": true,
-    "pathRewrite": {
-      "^/bff-marketplace": ""
-    }
-  },
-  "/module": {
-    "target": "http://devdb.localtest.me:4200/",
-    "secure": false,
-    "pathRewrite": {
-      "^/module": ""
-    }
-  },
-  "/workOrders/assets/Images": {
-    "target": "http://devdb.localtest.me:4200/",
-    "secure": false,
-    "pathRewrite": {
-      "^/workOrders": ""
     }
   }
 }
