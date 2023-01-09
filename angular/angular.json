@@ -1,0 +1,133 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "web-lightning": {
+      "root": "projects/web-lightning/",
+      "sourceRoot": "projects/web-lightning/src",
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/web-lightning",
+            "index": "projects/web-lightning/src/index.html",
+            "main": "projects/web-lightning/src/main.ts",
+            "polyfills": "projects/web-lightning/src/polyfills.ts",
+            "tsConfig": "projects/web-lightning/tsconfig.app.json",
+            "extraWebpackConfig": "projects/web-lightning/webpack.config.js",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "fast-json-patch",
+              "toastr",
+              "devextreme",
+              "devextreme-angular",
+              "devextreme-aspnet-data-nojquery",
+              "p-cancelable",
+              "tiny-emitter",
+              "cross-fetch",
+              "adal-angular",
+              "luxon",
+              "jquery",
+              "detect-node"
+            ],
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/web-lightning/src/environments/environment.ts",
+                  "with": "projects/web-lightning/src/environments/environment.prod.ts"
+                }
+              ],
+              "extraWebpackConfig": "projects/web-lightning/webpack.prod.config.js",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "13mb"
+                }
+              ]
+            },
+            "development": {
+              "sourceMap": true,
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "namedChunks": true,
+              "index": {
+                "input": "projects/web-lightning/src/index.development.html",
+                "output": "index.html"
+              }
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "web-lightning:build",
+            "proxyConfig": "projects/web-lightning/src/proxy.conf.json",
+            "port": 4200,
+            "publicHost": "http://localhost:4200",
+            "extraWebpackConfig": "projects/web-lightning/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "web-lightning:build:production",
+              "extraWebpackConfig": "projects/web-lightning/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "web-lightning:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "web-lightning:build",
+            "extraWebpackConfig": "projects/web-lightning/webpack.config.js"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run"
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/web-lightning/tsconfig.app.json",
+              "projects/web-lightning/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}
